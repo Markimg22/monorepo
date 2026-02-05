@@ -1,0 +1,11 @@
+import config from '@monorepo/vitest-config/node';
+import { defineConfig, mergeConfig } from 'vitest/config';
+
+export default mergeConfig(
+    config,
+    defineConfig({
+        test: {
+            // Add package-specific test configurations here
+        },
+    })
+);

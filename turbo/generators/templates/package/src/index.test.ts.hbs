@@ -1,0 +1,8 @@
+import { describe, expect, it } from 'vitest';
+import { hello } from './index';
+
+describe('{{kebabCase name}}', () => {
+    it('should return hello message', () => {
+        expect(hello()).toBe('Hello from @monorepo/{{kebabCase name}}!');
+    });
+});

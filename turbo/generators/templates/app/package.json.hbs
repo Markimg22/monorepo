@@ -1,0 +1,37 @@
+{
+    "name": "@monorepo/{{kebabCase name}}",
+    "version": "0.0.1",
+    "private": true,
+    "description": "{{description}}",
+    "scripts": {
+        "dev": "next dev --turbopack --port {{port}}",
+        "build": "next build",
+        "start": "next start --port {{port}}",
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "check": "biome check --write .",
+        "test": "vitest",
+        "test:coverage": "vitest --coverage"
+    },
+    "dependencies": {
+        "next": "16.1.6",
+        "react": "19.2.3",
+        "react-dom": "19.2.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@monorepo/biome-config": "workspace:*",
+        "@monorepo/typescript-config": "workspace:*",
+        "@monorepo/vitest-config": "workspace:*",
+        "@tailwindcss/postcss": "^4",
+        "@testing-library/jest-dom": "^6",
+        "@testing-library/react": "^16",
+        "@types/node": "catalog:",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "jsdom": "^26",
+        "tailwindcss": "^4",
+        "typescript": "catalog:",
+        "vitest": "catalog:"
+    }
+}

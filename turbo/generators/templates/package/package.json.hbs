@@ -1,0 +1,37 @@
+{
+    "name": "@monorepo/{{kebabCase name}}",
+    "version": "0.0.1",
+    "description": "{{description}}",
+    "author": "@Markimg22",
+    "license": "MIT",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "check": "biome check --write ."{{#if withTests}},
+        "test": "vitest",
+        "test:coverage": "vitest --coverage"{{/if}}
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@monorepo/biome-config": "workspace:*",
+        "@monorepo/typescript-config": "workspace:*",
+        "@types/node": "catalog:",
+        "typescript": "catalog:"{{#if withTests}},
+        "@monorepo/vitest-config": "workspace:*",
+        "vitest": "catalog:"{{/if}}
+    }
+}
