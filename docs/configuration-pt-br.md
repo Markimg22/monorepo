@@ -434,7 +434,7 @@ export default defineConfig({
 
 ```typescript
 // vitest.config.ts
-import config from '@saas-rh/vitest-config/node';
+import config from '@monorepo/vitest-config/node';
 export default config;
 ```
 
@@ -825,3 +825,285 @@ rm -rf .turbo                  # Remove cache local
 ```
 
 ---
+
+## Generators
+
+O Turborepo possui generators baseados no Plop para criar novos packages e apps automaticamente.
+
+### Instalação
+
+```bash
+pnpm add -D @turbo/gen -w
+```
+
+### Estrutura
+
+```
+turbo/
+└── generators/
+    ├── config.ts          # Configuração dos generators
+    └── templates/         # Templates Handlebars
+        ├── package/       # Templates para packages
+        └── app/           # Templates para apps
+```
+
+### Generator: Package
+
+Cria um novo package compartilhado em `packages/`:
+
+```bash
+pnpm turbo gen package
+```
+
+**Prompts:**
+
+| Campo | Descrição |
+|-------|-----------|
+| `name` | Nome do package (sem prefixo `@monorepo/`) |
+| `description` | Descrição do package |
+| `withTests` | Incluir configuração de testes (default: true) |
+
+**Arquivos gerados:**
+
+```
+packages/<name>/
+├── package.json
+├── tsconfig.json
+├── biome.jsonc
+├── vitest.config.ts  # se withTests
+└── src/
+    ├── index.ts
+    └── index.test.ts  # se withTests
+```
+
+### Generator: App
+
+Cria um novo app Next.js em `apps/`:
+
+```bash
+pnpm turbo gen app
+```
+
+**Prompts:**
+
+| Campo | Descrição |
+|-------|-----------|
+| `name` | Nome do app (sem prefixo `@monorepo/`) |
+| `description` | Descrição do app |
+| `port` | Porta de desenvolvimento (default: 3000) |
+
+**Arquivos gerados:**
+
+```
+apps/<name>/
+├── package.json
+├── tsconfig.json
+├── biome.jsonc
+├── next.config.ts
+├── postcss.config.mjs
+├── vitest.config.ts
+├── vitest.setup.ts
+└── src/
+    └── app/
+        ├── layout.tsx
+        ├── page.tsx
+        └── globals.css
+```
+
+### Uso com Argumentos
+
+Para evitar prompts interativos:
+
+```bash
+# Package
+pnpm turbo gen package --args "utils" "Utility functions" "true"
+
+# App
+pnpm turbo gen app --args "admin" "Admin dashboard" "3001"
+```
+
+### Após Criar um Projeto
+
+```bash
+pnpm install   # Instalar dependências
+pnpm build     # Verificar build
+pnpm check     # Verificar lint/format
+```
+
+---
+
+## Criando Projetos Manualmente
+
+### Novo Package
+
+1. Crie a pasta em `packages/`:
+
+```bash
+mkdir -p packages/meu-package
+cd packages/meu-package
+pnpm init
+```
+
+2. Configure o `package.json`:
+
+```json
+{
+    "name": "@monorepo/meu-package",
+    "version": "1.0.0",
+    "description": "Descrição do package",
+    "author": "@Markimg22",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "files": ["src", "dist"],
+    "devDependencies": {
+        "@monorepo/typescript-config": "workspace:*",
+        "@monorepo/biome-config": "workspace:*",
+        "@monorepo/vitest-config": "workspace:*",
+        "typescript": "catalog:",
+        "vitest": "catalog:"
+    },
+    "scripts": {
+        "build": "tsc",
+        "check": "biome check --write .",
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "test": "vitest",
+        "test:coverage": "vitest --coverage"
+    }
+}
+```
+
+3. Configure o `tsconfig.json`:
+
+```json
+{
+    "extends": "@monorepo/typescript-config/library.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src"
+    },
+    "include": ["src"]
+}
+```
+
+4. Configure o `biome.jsonc`:
+
+```jsonc
+{
+    "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
+    "extends": ["@monorepo/biome-config/biome.json"],
+    "root": false
+}
+```
+
+> Use `biome.jsonc` para que editores detectem a configuração local corretamente.
+
+5. Configure o `vitest.config.ts`:
+
+```typescript
+import config from '@monorepo/vitest-config/node';
+export default config;
+```
+
+### Novo App Next.js
+
+1. Crie a pasta em `apps/`:
+
+```bash
+mkdir -p apps/meu-app
+cd apps/meu-app
+pnpm init
+```
+
+2. Configure o `package.json`:
+
+```json
+{
+    "name": "@monorepo/meu-app",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Descrição do app",
+    "author": "@Markimg22",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "dev": "next dev --port 3000",
+        "build": "next build",
+        "start": "next start",
+        "check": "biome check --write .",
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "test": "vitest",
+        "test:coverage": "vitest --coverage"
+    },
+    "dependencies": {
+        "next": "^16.3.3",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0"
+    },
+    "devDependencies": {
+        "@monorepo/typescript-config": "workspace:*",
+        "@monorepo/biome-config": "workspace:*",
+        "@monorepo/vitest-config": "workspace:*",
+        "@testing-library/jest-dom": "^6.7.0",
+        "@testing-library/react": "^16.3.0",
+        "@types/node": "catalog:",
+        "@types/react": "^19.1.8",
+        "@types/react-dom": "^19.1.6",
+        "jsdom": "^26.1.0",
+        "tailwindcss": "^4.1.11",
+        "typescript": "catalog:",
+        "vitest": "catalog:"
+    }
+}
+```
+
+3. Configure o `tsconfig.json`:
+
+```json
+{
+    "extends": "@monorepo/typescript-config/base.json",
+    "compilerOptions": {
+        "lib": ["dom", "dom.iterable", "ES2024"],
+        "jsx": "preserve",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "noEmit": true,
+        "plugins": [{ "name": "next" }],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
+}
+```
+
+4. Configure o `next.config.ts`:
+
+```typescript
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {};
+
+export default nextConfig;
+```
+
+5. Configure o `vitest.config.ts`:
+
+```typescript
+import config from '@monorepo/vitest-config/react';
+export default config;
+```
+
+6. Crie a estrutura de pastas:
+
+```bash
+mkdir -p src/app
+```
+
+7. Execute `pnpm install` na raiz.
