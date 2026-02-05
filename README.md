@@ -1,98 +1,99 @@
 # Monorepo Template
 
-Template moderno e escalável para projetos monorepo, pré-configurado com as melhores ferramentas do ecossistema JavaScript/TypeScript.
+A modern and scalable template for monorepo projects, pre-configured with the best tools from the JavaScript/TypeScript ecosystem.
 
-## Sobre
+## About
 
-Este template fornece uma base sólida para desenvolvimento de aplicações web em monorepo, utilizando Turborepo para gerenciamento de builds e tarefas. Inclui configurações compartilhadas de TypeScript, Biome (linting/formatting) e Vitest (testes), permitindo consistência entre todos os projetos do workspace. Ideal para times que buscam produtividade, padronização de código e uma experiência de desenvolvimento otimizada.
+This template provides a solid foundation for developing web applications in a monorepo, using Turborepo for build and task management. It includes shared configurations for TypeScript, Biome (linting/formatting), and Vitest (testing), ensuring consistency across all workspace projects. Ideal for teams seeking productivity, code standardization, and an optimized development experience.
 
 ## Tech Stack
 
-| Categoria | Tecnologia |
-|-----------|------------|
+| Category | Technology |
+|----------|------------|
 | Runtime | Node.js 22+ |
 | Package Manager | pnpm 10.15 |
 | Build System | Turborepo |
-| Linguagem | TypeScript 5.9 |
+| Language | TypeScript 5.9 |
 | Linting/Format | Biome |
-| Testes | Vitest |
+| Testing | Vitest |
 | Frontend | Next.js 16 + React 19 |
-| Estilização | Tailwind CSS 4 |
+| Styling | Tailwind CSS 4 |
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 monorepo/
 ├── apps/
-│   └── web/                 # Aplicação Next.js principal
+│   └── web/                 # Main Next.js application
 ├── packages/
-│   ├── typescript-config/   # Configurações TypeScript compartilhadas
-│   ├── biome-config/        # Configuração Biome (lint/format)
-│   └── vitest-config/       # Configurações Vitest para testes
-└── docs/                    # Documentação do projeto
+│   ├── typescript-config/   # Shared TypeScript configurations
+│   ├── biome-config/        # Biome configuration (lint/format)
+│   └── vitest-config/       # Vitest configurations for testing
+└── docs/                    # Project documentation
 ```
 
-## Começando
+## Getting Started
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js >= 22.22.0
 - pnpm 10.15.0
 
-### Instalação
+### Installation
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/Markimg22/monorepo.git
 cd monorepo
 
-# Instale as dependências
+# Install dependencies
 pnpm install
 
-# Inicie o desenvolvimento
+# Start development
 pnpm dev
 ```
 
-## Comandos
+## Commands
 
-| Comando | Descrição |
-|---------|-----------|
-| `pnpm dev` | Inicia servidor de desenvolvimento |
-| `pnpm build` | Build de produção |
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Production build |
 | `pnpm check` | Lint + Format (Biome) |
-| `pnpm test` | Executa testes |
-| `pnpm test:coverage` | Testes com cobertura |
+| `pnpm test` | Run tests |
+| `pnpm test:coverage` | Tests with coverage |
 
-### Filtrar por Projeto
+### Filter by Project
 
 ```bash
 pnpm dev --filter=@monorepo/web
 pnpm build --filter=@monorepo/web
 ```
 
-## Criando Novos Projetos
+## Creating New Projects
 
-Use os generators do Turborepo:
+Use Turborepo generators:
 
 ```bash
-# Novo package compartilhado
+# New shared package
 pnpm turbo gen package
 
-# Novo app Next.js
+# New Next.js app
 pnpm turbo gen app
 ```
 
-## Documentação
+## Documentation
 
-Documentação detalhada disponível em [`docs/`](./docs/):
+Detailed documentation available in [`docs/`](./docs/):
 
-- [Configuração PT-BR](./docs/configuration-pt-br.md) - Setup do monorepo
+- [Configuration PT-BR](./docs/configuration-pt-br.md) - Monorepo setup (Portuguese)
+- [Configuration EN](./docs/configuration-en.md) - Monorepo setup (English)
 
-## Convenções
+## Conventions
 
 ### Commits
 
-Seguimos [Conventional Commits](https://www.conventionalcommits.org/):
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
 feat: add user authentication
@@ -100,11 +101,11 @@ fix: resolve login redirect issue
 docs: update installation guide
 ```
 
-### Dependências
+### Dependencies
 
-- Use `catalog:` para dependências compartilhadas
-- Use `workspace:*` para packages internos
+- Use `catalog:` for shared dependencies
+- Use `workspace:*` for internal packages
 
-## Licença
+## License
 
 MIT
