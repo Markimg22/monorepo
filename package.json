@@ -1,0 +1,15 @@
+{
+    "name": "monorepo",
+    "version": "1.0.0",
+    "description": "A template for a Monorepo project.",
+    "license": "MIT",
+    "author": "Markimg22",
+    "packageManager": "pnpm@10.15.0",
+    "engines": {
+        "node": ">=22.22.0"
+    },
+    "keywords": [
+        "monorepo",
+        "template"
+    ]
+}
