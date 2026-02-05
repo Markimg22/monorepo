@@ -1,0 +1,20 @@
+{
+    "name": "@monorepo/typescript-config",
+    "version": "1.0.0",
+    "description": "Shared TypeScript configurations for monorepo",
+    "author": "@Markimg22",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        "./base.json": "./base.json",
+        "./node.json": "./node.json",
+        "./library.json": "./library.json"
+    },
+    "files": [
+        "*.json"
+    ],
+    "devDependencies": {
+        "@types/node": "catalog:",
+        "typescript": "catalog:"
+    }
+}

@@ -1,0 +1,11 @@
+packages:
+    - apps/*
+    - packages/*
+
+catalog:
+    "@biomejs/biome": 2.3.14
+    "@types/node": 24.5.0
+    typescript: 5.9.2
+    vitest: 4.0.17
+
+injectWorkspacePackages: true
