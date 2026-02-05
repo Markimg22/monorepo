@@ -1,0 +1,5 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
+    "extends": ["@monorepo/biome-config/biome.json"],
+    "root": false
+}
