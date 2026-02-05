@@ -8,13 +8,18 @@ Guia passo a passo para configurar o monorepo do zero.
 - [Inicializando o Projeto](#inicializando-o-projeto)
 - [Configuração do Workspace](#configuração-do-workspace)
 - [Packages Compartilhados](#packages-compartilhados)
-  - [typescript-config](#typescript-config)
-  - [biome-config](#biome-config)
-  - [vitest-config](#vitest-config)
+    - [typescript-config](#typescript-config)
+    - [biome-config](#biome-config)
+    - [vitest-config](#vitest-config)
 - [Git Hooks](#git-hooks)
     - [Commitlint](#commitlint)
     - [Lefthook](#lefthook)
     - [Conventional Commits](#conventional-commits)
+- [Fluxo de Trabalho](#fluxo-de-trabalho)
+    - [TurboRepo](#turborepo)
+    - [Comandos](#comandos)
+    - [Generators](#generators)
+    - [Criando Projetos Manualmente](#criando-projetos-manualmente)
 ---
 
 ## Requisitos
