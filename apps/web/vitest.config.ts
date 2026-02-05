@@ -7,5 +7,5 @@ export default mergeConfig(
         test: {
             // Add app-specific test configurations here
         },
-    })
+    }),
 );
