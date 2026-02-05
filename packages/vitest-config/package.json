@@ -1,0 +1,19 @@
+{
+    "name": "@monorepo/vitest-config",
+    "version": "1.0.0",
+    "description": "Shared Vitest configuration for monorepo",
+    "author": "@Markimg22",
+    "license": "MIT",
+    "type": "module",
+    "exports": {
+        "./node": "./node.ts",
+        "./react": "./react.ts"
+    },
+    "files": [
+        "*.ts"
+    ],
+    "devDependencies": {
+        "typescript": "catalog:",
+        "vitest": "catalog:"
+    }
+}
