@@ -442,7 +442,7 @@ Para customizar:
 
 ```typescript
 import { defineConfig, mergeConfig } from 'vitest/config';
-import baseConfig from '@saas-rh/vitest-config/node';
+import baseConfig from '@monorepo/vitest-config/node';
 
 export default mergeConfig(baseConfig, defineConfig({
     test: {
@@ -705,3 +705,123 @@ fix: resolve login redirect loop
 
 Closes #123
 ```
+
+--- 
+
+## Fluxo de Trabalho
+
+Guia de comandos, TurboRepo e generators para desenvolvimento.
+
+---
+
+## TurboRepo
+
+O TurboRepo é um build system de alta performance para monorepos. Ele otimiza a execução de tasks com cache inteligente e paralelização.
+
+### Instalação
+
+```bash
+pnpm add -D turbo -w
+```
+
+### Configuração
+
+Crie `turbo.json` na raiz:
+
+```json
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "check": {
+            "dependsOn": ["^build"]
+        },
+        "lint": {},
+        "format": {},
+        "test": {
+            "dependsOn": ["^build"]
+        },
+        "test:coverage": {
+            "dependsOn": ["^build"]
+        }
+    }
+}
+```
+
+**Explicação das tasks:**
+
+| Task | Descrição |
+|------|-----------|
+| `build` | Compila projetos. `^build` compila dependências primeiro |
+| `dev` | Servidor de desenvolvimento. Sem cache, persistente |
+| `check` | Biome check (lint + format) |
+| `lint` | Apenas linting |
+| `format` | Apenas formatação |
+| `test` | Executa testes |
+| `test:coverage` | Testes com cobertura |
+
+---
+
+## Comandos
+
+### Comandos Globais
+
+Crie novos scripts em `package.json`:
+
+```json
+{
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "check": "turbo run check",
+        "lint": "turbo run lint",
+        "format": "turbo run format",
+        "test": "turbo run test",
+        "test:coverage": "turbo run test:coverage",
+        "prepare": "lefthook install"
+    }
+}
+``` 
+
+Execute da raiz do projeto:
+
+```bash
+pnpm dev           # Inicia dev server de todos os projetos
+pnpm build         # Build de produção
+pnpm check         # Lint + Format (Biome)
+pnpm lint          # Apenas lint
+pnpm format        # Apenas format
+pnpm test          # Executa testes
+pnpm test:coverage # Testes com cobertura
+```
+
+### Filtrar por Projeto
+
+```bash
+# Build de um projeto específico
+pnpm build --filter=@monorepo/web
+
+# Dev de um projeto específico
+pnpm dev --filter=@monorepo/web
+
+# Testes de um projeto específico
+pnpm test --filter=@monorepo/utils
+```
+
+### Cache
+
+O Turborepo usa cache para evitar reexecutar tasks que não mudaram. Para limpar o cache:
+
+```bash
+pnpm turbo run build --force  # Ignora cache
+rm -rf .turbo                  # Remove cache local
+```
+
+---
