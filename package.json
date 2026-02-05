@@ -11,5 +11,17 @@
     "keywords": [
         "monorepo",
         "template"
-    ]
+    ],
+    "scripts": {
+        "prepare": "lefthook install"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "catalog:",
+        "@commitlint/cli": "^20.4.1",
+        "@commitlint/config-conventional": "^20.4.1",
+        "@commitlint/types": "^20.4.0",
+        "@monorepo/biome-config": "workspace:*",
+        "@monorepo/typescript-config": "workspace:*",
+        "lefthook": "^2.1.0"
+    }
 }
