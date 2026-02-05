@@ -326,6 +326,16 @@ Na raiz do projeto crie um `biome.json` também para o editor funcionar corretam
 }
 ```
 
+E altere seu `package.json` adicionando o *biome* como *devDependencies*:
+
+```json
+{
+    "devDependencies": {
+        "@biomejs/biome": "catalog:"
+    }
+}
+```
+
 E no caso do editor *Zed* instale a extensão do **Biome** e cria na raiz um `.zed/settings.json`:
 
 ```json
@@ -487,6 +497,12 @@ O Commitlint valida mensagens de commit seguindo o padrão [Conventional Commits
 
 ### Instalação
 
+Primeiro instale o *biome* e *typescript* dos seus pacotes anteriormentes configurados na raiz do projeto:
+
+```bash
+pnpm add -D -w "@monorepo/biome-config@workspace:*" "@monorepo/typescript-config@workspace:*"
+```
+
 Na raiz do projeto
 
 ```bash
@@ -498,7 +514,7 @@ pnpm add -Dw @commitlint/cli @commitlint/config-conventional @commitlint/types
 Crie `commitlint.config.ts` na raiz:
 
 ```typescript
-
+import type { UserConfig } from '@commitlint/types';
 
 const config: UserConfig = {
     extends: ['@commitlint/config-conventional'],
