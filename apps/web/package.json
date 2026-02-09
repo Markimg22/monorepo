@@ -14,9 +14,10 @@
         "test:coverage": "vitest --coverage"
     },
     "dependencies": {
+        "@monorepo/ui": "workspace:*",
         "next": "16.1.6",
-        "react": "19.2.3",
-        "react-dom": "19.2.3"
+        "react": "catalog:",
+        "react-dom": "catalog:"
     },
     "devDependencies": {
         "@biomejs/biome": "catalog:",
