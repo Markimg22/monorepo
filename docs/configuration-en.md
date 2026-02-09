@@ -71,9 +71,22 @@ packages:
     - packages/*
 
 catalog:
-    "@biomejs/biome": 2.3.14
-    "@types/node": 24.5.0
+    '@biomejs/biome': 2.3.14
+    '@tailwindcss/postcss': 4.1.18
+    '@testing-library/jest-dom': 6.9.1
+    '@testing-library/react': 16.3.2
+    '@testing-library/user-event': 14.6.1
+    '@types/node': 24.5.0
+    '@types/react': 19.2.11
+    '@types/react-dom': 19.2.3
+    '@vitest/coverage-v8': 4.0.18
+    jsdom: 26.1.0
+    lucide-react: ^0.563.0
+    react: 19.2.3
+    react-dom: 19.2.3
+    tailwindcss: 4.1.18
     typescript: 5.9.2
+    vite: ^6.4.1
     vitest: 4.0.17
 
 injectWorkspacePackages: true
@@ -134,7 +147,8 @@ pnpm init
     "exports": {
         "./base.json": "./base.json",
         "./node.json": "./node.json",
-        "./library.json": "./library.json"
+        "./library.json": "./library.json",
+        "./react.json": "./react.json"
     },
     "files": ["*.json"],
     "devDependencies": {
@@ -217,6 +231,31 @@ pnpm init
 }
 ```
 
+**`react.json`** - For React projects:
+
+```json
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "React",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "lib": ["ES2024", "DOM", "DOM.Iterable"],
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx"
+    }
+}
+```
+
+**Usage:**
+
+```json
+{
+    "extends": "@monorepo/typescript-config/react.json"
+}
+```
+
 ---
 
 ### biome-config
@@ -255,6 +294,9 @@ pnpm init
 {
     "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
     "root": false,
+    "files": {
+        "includes": ["**", "!**/*.hbs"]
+    },
     "vcs": {
         "enabled": true,
         "clientKind": "git",
@@ -326,7 +368,7 @@ At the project root, create a `biome.json` as well for the editor to work correc
 {
     "$schema": "https://biomejs.dev/schemas/2.3.14/schema.json",
     // Here you should use the relative path
-    "extends": ["./packages/biome-config/biome.json"], 
+    "extends": ["./packages/biome-config/biome.json"],
     "root": true
 }
 ```
@@ -433,6 +475,12 @@ export default defineConfig({
         setupFiles: ['./vitest.setup.ts'],
     },
 });
+```
+
+**`react.setup.ts`** - Setup for React tests:
+
+```typescript
+import '@testing-library/jest-dom/vitest';
 ```
 
 **Usage:**
@@ -711,7 +759,7 @@ fix: resolve login redirect loop
 Closes #123
 ```
 
---- 
+---
 
 ## Workflow
 
@@ -793,7 +841,7 @@ Create new scripts in `package.json`:
         "prepare": "lefthook install"
     }
 }
-``` 
+```
 
 Run from the project root:
 
@@ -886,7 +934,7 @@ packages/<name>/
 Creates a new Next.js app in `apps/`:
 
 ```bash
-pnpm turbo gen app
+pnpm turbo gen web
 ```
 
 **Prompts:**

@@ -15,9 +15,10 @@ This template provides a solid foundation for developing web applications in a m
 | Build System | Turborepo |
 | Language | TypeScript 5.9 |
 | Linting/Format | Biome |
-| Testing | Vitest |
+| Testing | Vitest + Testing Library |
 | Frontend | Next.js 16 + React 19 |
 | Styling | Tailwind CSS 4 |
+| UI Components | Storybook 8 |
 
 ## Project Structure
 
@@ -28,7 +29,10 @@ monorepo/
 ├── packages/
 │   ├── typescript-config/   # Shared TypeScript configurations
 │   ├── biome-config/        # Biome configuration (lint/format)
-│   └── vitest-config/       # Vitest configurations for testing
+│   ├── vitest-config/       # Vitest configurations for testing
+│   └── ui/                  # Shared React UI components library
+├── turbo/
+│   └── generators/          # Turborepo generators for scaffolding
 └── docs/                    # Project documentation
 ```
 
@@ -79,8 +83,14 @@ Use Turborepo generators:
 pnpm turbo gen package
 
 # New Next.js app
-pnpm turbo gen app
+pnpm turbo gen web
 ```
+
+Generators automatically scaffold projects with:
+- Pre-configured package.json with monorepo standards
+- TypeScript, Biome, and Vitest setup
+- Proper workspace references
+- Template files following project conventions
 
 ## Documentation
 
