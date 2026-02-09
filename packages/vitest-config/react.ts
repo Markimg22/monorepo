@@ -9,10 +9,16 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             reporter: ['text', 'json', 'html'],
-            exclude: ['node_modules', 'dist', '.next', '**/*.{test,spec}.{js,ts,jsx,tsx}'],
+            exclude: [
+                'node_modules',
+                'dist',
+                '.next',
+                '**/*.{test,spec}.{js,ts,jsx,tsx}',
+                '*/index.{ts,tsx}',
+            ],
         },
         testTimeout: 10000,
         hookTimeout: 10000,
-        setupFiles: ['./vitest.setup.ts'],
+        setupFiles: ['@monorepo/vitest-config/react.setup.ts'],
     },
 });

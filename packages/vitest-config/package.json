@@ -7,12 +7,17 @@
     "type": "module",
     "exports": {
         "./node": "./node.ts",
-        "./react": "./react.ts"
+        "./react": "./react.ts",
+        "./react.setup.ts": "./react.setup.ts"
     },
     "files": [
         "*.ts"
     ],
     "devDependencies": {
+        "@testing-library/jest-dom": "catalog:",
+        "@testing-library/react": "catalog:",
+        "@testing-library/user-event": "catalog:",
+        "jsdom": "catalog:",
         "typescript": "catalog:",
         "vitest": "catalog:"
     }
