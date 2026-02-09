@@ -3,9 +3,22 @@ packages:
     - packages/*
 
 catalog:
-    "@biomejs/biome": 2.3.14
-    "@types/node": 24.5.0
+    '@biomejs/biome': 2.3.14
+    '@tailwindcss/postcss': 4.1.18
+    '@testing-library/jest-dom': 6.9.1
+    '@testing-library/react': 16.3.2
+    '@testing-library/user-event': 14.6.1
+    '@types/node': 24.5.0
+    '@types/react': 19.2.11
+    '@types/react-dom': 19.2.3
+    '@vitest/coverage-v8': 4.0.18
+    jsdom: 26.1.0
+    lucide-react: ^0.563.0
+    react: 19.2.3
+    react-dom: 19.2.3
+    tailwindcss: 4.1.18
     typescript: 5.9.2
+    vite: ^6.4.1
     vitest: 4.0.17
 
 injectWorkspacePackages: true
