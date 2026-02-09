@@ -90,7 +90,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     });
 
     // Generator para criar novos apps Next.js
-    plop.setGenerator('app', {
+    plop.setGenerator('web', {
         description: 'Create a new Next.js app in apps/',
         prompts: [
             {
@@ -132,53 +132,53 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/package.json',
-                templateFile: 'templates/app/package.json.hbs',
+                templateFile: 'templates/app/web/package.json.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/tsconfig.json',
-                templateFile: 'templates/app/tsconfig.json.hbs',
+                templateFile: 'templates/app/web/tsconfig.json.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/biome.jsonc',
-                templateFile: 'templates/app/biome.jsonc.hbs',
+                templateFile: 'templates/app/web/biome.jsonc.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/next.config.ts',
-                templateFile: 'templates/app/next.config.ts.hbs',
+                templateFile: 'templates/app/web/next.config.ts.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/postcss.config.mjs',
-                templateFile: 'templates/app/postcss.config.mjs.hbs',
+                templateFile: 'templates/app/web/postcss.config.mjs.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/vitest.config.ts',
-                templateFile: 'templates/app/vitest.config.ts.hbs',
+                templateFile: 'templates/app/web/vitest.config.ts.hbs',
             },
             {
                 type: 'add',
-                path: 'apps/{{kebabCase name}}/vitest.setup.ts',
-                templateFile: 'templates/app/vitest.setup.ts.hbs',
+                path: 'apps/{{kebabCase name}}/.gitignore',
+                templateFile: 'templates/app/web/gitignore.hbs',
             },
             // App source files
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/src/app/layout.tsx',
-                templateFile: 'templates/app/src/app/layout.tsx.hbs',
+                templateFile: 'templates/app/web/src/app/layout.tsx.hbs',
             },
             {
                 type: 'add',
                 path: 'apps/{{kebabCase name}}/src/app/page.tsx',
-                templateFile: 'templates/app/src/app/page.tsx.hbs',
+                templateFile: 'templates/app/web/src/app/page.tsx.hbs',
             },
             {
                 type: 'add',
-                path: 'apps/{{kebabCase name}}/src/app/globals.css',
-                templateFile: 'templates/app/src/app/globals.css.hbs',
+                path: 'apps/{{kebabCase name}}/src/styles/globals.css',
+                templateFile: 'templates/app/web/src/styles/globals.css.hbs',
             },
         ],
     });

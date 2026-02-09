@@ -1,6 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@monorepo/typescript-config/base.json",
+    "extends": "@monorepo/typescript-config/react.json",
     "compilerOptions": {
         "target": "ES2017",
         "lib": ["dom", "dom.iterable", "esnext"],
@@ -16,7 +16,8 @@
         ],
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "types": ["@testing-library/jest-dom/vitest"]
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
     "exclude": ["node_modules"]
