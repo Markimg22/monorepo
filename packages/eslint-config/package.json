@@ -1,0 +1,19 @@
+{
+    "name": "@monorepo/eslint-config",
+    "version": "1.0.0",
+    "description": "Shared ESLint configurations for the monorepo.",
+    "private": true,
+    "license": "MIT",
+    "exports": {
+        "./base": "./base.js",
+        "./node": "./node.js",
+        "./react": "./react.js"
+    },
+    "devDependencies": {
+        "eslint": "catalog:",
+        "@eslint/js": "catalog:",
+        "typescript-eslint": "catalog:",
+        "eslint-plugin-react-hooks": "catalog:",
+        "@next/eslint-plugin-next": "catalog:"
+    }
+}

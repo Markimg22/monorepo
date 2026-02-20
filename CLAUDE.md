@@ -34,7 +34,26 @@ Shared configs live in `packages/typescript-config`. Each package extends the ap
 Available configs:
 - `base.json` — strict settings shared by all configs
 - `node.json` — for Node.js apps/packages (`ESNext` + `Bundler`)
+- `nextjs.json` — for Next.js apps (`jsx: preserve`, `noEmit: true`)
+- `react-library.json` — for React component packages (`jsx: react-jsx`)
 
 When adding a new package, add `"@monorepo/typescript-config": "workspace:*"` to its `devDependencies`.
+
+## ESLint
+
+Shared configs live in `packages/eslint-config`. Each package imports the appropriate config in its `eslint.config.js`:
+
+```js
+import { node } from "@monorepo/eslint-config/node";
+// or
+import { react } from "@monorepo/eslint-config/react";
+```
+
+Available configs:
+- `base.js` — `typescript-eslint` rules shared by all configs
+- `node.js` — extends base (for Node.js packages)
+- `react.js` — extends base + `eslint-plugin-react-hooks` + `@next/eslint-plugin-next`
+
+When adding a new package, add `"@monorepo/eslint-config": "workspace:*"` to its `devDependencies`.
 
 Shared dependency versions are managed via `catalog:` in `pnpm-workspace.yaml`. Always use `catalog:` instead of hardcoded versions for deps listed there.

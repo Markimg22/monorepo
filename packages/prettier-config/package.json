@@ -1,0 +1,16 @@
+{
+    "name": "@monorepo/prettier-config",
+    "version": "1.0.0",
+    "description": "Shared Prettier configurations for the monorepo.",
+    "private": true,
+    "license": "MIT",
+    "exports": {
+        ".": "./index.js",
+        "./react": "./react.js"
+    },
+    "devDependencies": {
+        "prettier": "catalog:",
+        "prettier-plugin-organize-imports": "catalog:",
+        "prettier-plugin-tailwindcss": "catalog:"
+    }
+}
