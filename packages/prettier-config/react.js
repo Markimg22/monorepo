@@ -1,9 +1,9 @@
-import baseConfig from "./index.js";
+import baseConfig from './index.js';
 
 /** @type {import("prettier").Config} */
 const config = {
-  ...baseConfig,
-  plugins: [...baseConfig.plugins, "prettier-plugin-tailwindcss"],
+    ...baseConfig,
+    plugins: [...baseConfig.plugins, 'prettier-plugin-tailwindcss']
 };
 
 export default config;

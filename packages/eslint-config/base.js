@@ -1,7 +1,7 @@
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
-import prettier from "eslint-config-prettier";
-import { defineConfig } from "eslint/config";
+import eslint from '@eslint/js';
+import prettier from 'eslint-config-prettier';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
 /** @type {import("typescript-eslint").Config} */
 export const base = defineConfig(
@@ -9,21 +9,15 @@ export const base = defineConfig(
     tseslint.configs.recommendedTypeChecked,
     {
         rules: {
-            "@typescript-eslint/no-unused-vars": [
-                "error",
-                { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-            ],
-            "@typescript-eslint/consistent-type-imports": [
-                "error",
-                { prefer: "type-imports", fixStyle: "inline-type-imports" },
-            ],
-            "@typescript-eslint/no-import-type-side-effects": "error",
-        },
+            '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+            '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports', fixStyle: 'inline-type-imports' }],
+            '@typescript-eslint/no-import-type-side-effects': 'error'
+        }
     },
     {
         linterOptions: {
-            reportUnusedDisableDirectives: true,
-        },
+            reportUnusedDisableDirectives: true
+        }
     },
-    prettier,
+    prettier
 );

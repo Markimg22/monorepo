@@ -5,7 +5,11 @@
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "target": "ES2017",
-        "lib": ["ES2017", "DOM", "DOM.Iterable"],
+        "lib": [
+            "ES2017",
+            "DOM",
+            "DOM.Iterable"
+        ],
         "jsx": "preserve",
         "allowJs": true,
         "incremental": true,

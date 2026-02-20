@@ -1,0 +1,4 @@
+{
+    "extends": "./packages/typescript-config/node.json",
+    "files": []
+}
