@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Shared ESLint configurations for the monorepo.",
     "private": true,
+    "type": "module",
     "license": "MIT",
     "exports": {
         "./base": "./base.js",

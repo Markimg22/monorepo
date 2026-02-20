@@ -1,16 +1,29 @@
 packages:
-  - apps/*
-  - packages/*
+    - apps/*
+    - packages/*
 
 catalog:
-  "@eslint/js": 10.0.1
-  "@next/eslint-plugin-next": 16.1.6
-  "@types/node": 25.3.0
-  eslint: 10.0.1
-  eslint-config-prettier: 10.1.8
-  eslint-plugin-react-hooks: 7.0.1
-  prettier: 3.8.1
-  prettier-plugin-organize-imports: 4.3.0
-  prettier-plugin-tailwindcss: 0.7.2
-  typescript: 5.9.3
-  typescript-eslint: 8.56.0
+    # typescript
+    typescript: 5.9.3
+    '@types/node': 25.3.0
+
+    # eslint
+    eslint: 10.0.1
+    '@eslint/js': 10.0.1
+    '@next/eslint-plugin-next': 16.1.6
+    eslint-config-prettier: 10.1.8
+    eslint-plugin-react-hooks: 7.0.1
+    typescript-eslint: 8.56.0
+
+    # prettier
+    prettier: 3.8.1
+    prettier-plugin-organize-imports: 4.3.0
+    prettier-plugin-tailwindcss: 0.7.2
+
+    # git hooks
+    lefthook: 2.1.1
+    '@commitlint/cli': 20.4.2
+    '@commitlint/config-conventional': 20.4.2
+
+onlyBuiltDependencies:
+    - lefthook

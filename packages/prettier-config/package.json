@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Shared Prettier configurations for the monorepo.",
     "private": true,
+    "type": "module",
     "license": "MIT",
     "exports": {
         ".": "./index.js",

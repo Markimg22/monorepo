@@ -14,7 +14,12 @@
     },
     "scripts": {},
     "devDependencies": {
+        "@commitlint/cli": "catalog:",
+        "@commitlint/config-conventional": "catalog:",
+        "@eslint/js": "catalog:",
         "eslint": "catalog:",
+        "typescript-eslint": "catalog:",
+        "lefthook": "catalog:",
         "prettier": "catalog:",
         "prettier-plugin-organize-imports": "catalog:",
         "typescript": "catalog:"
