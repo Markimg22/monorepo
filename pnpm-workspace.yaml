@@ -1,0 +1,7 @@
+packages:
+    - apps/*
+    - packages/*
+
+catalog:
+    typescript: 5.9.3
+    "@types/node": 25.3.0

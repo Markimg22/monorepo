@@ -1,13 +1,16 @@
 {
-  "name": "monorepo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.15.0"
+    "name": "monorepo",
+    "version": "1.0.0",
+    "description": "A template for Monorepo project.",
+    "author": "@Markimg22",
+    "keywords": [
+        "monorepo",
+        "template"
+    ],
+    "license": "MIT",
+    "packageManager": "pnpm@10.15.0",
+    "engines": {
+        "node": ">=22.22.0"
+    },
+    "scripts": {}
 }
