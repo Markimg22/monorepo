@@ -12,6 +12,7 @@
     "devDependencies": {
         "eslint": "catalog:",
         "@eslint/js": "catalog:",
+        "eslint-config-prettier": "catalog:",
         "typescript-eslint": "catalog:",
         "eslint-plugin-react-hooks": "catalog:",
         "@next/eslint-plugin-next": "catalog:"
