@@ -1,0 +1,21 @@
+{
+    "name": "@monorepo/vitest-config",
+    "version": "1.0.0",
+    "description": "Shared Vitest configurations for the monorepo.",
+    "private": true,
+    "type": "module",
+    "license": "MIT",
+    "exports": {
+        "./base": "./base.js",
+        "./react": "./react.js",
+        "./setup": "./setup.js"
+    },
+    "devDependencies": {
+        "vitest": "catalog:",
+        "@vitest/coverage-v8": "catalog:",
+        "@testing-library/react": "catalog:",
+        "@testing-library/dom": "catalog:",
+        "@testing-library/jest-dom": "catalog:",
+        "jsdom": "catalog:"
+    }
+}
