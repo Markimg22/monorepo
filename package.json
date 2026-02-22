@@ -17,7 +17,8 @@
         "test": "nx run-many --target=test",
         "test:coverage": "nx run-many --target=test:coverage",
         "lint": "nx run-many --target=lint",
-        "typecheck": "nx run-many --target=typecheck"
+        "typecheck": "nx run-many --target=typecheck",
+        "format": "prettier --write ."
     },
     "devDependencies": {
         "@commitlint/cli": "catalog:",

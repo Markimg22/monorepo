@@ -29,6 +29,7 @@
         "react": "catalog:",
         "react-dom": "catalog:"
     },
+    "prettier": "./prettier.config.mjs",
     "devDependencies": {
         "@monorepo/eslint-config": "workspace:*",
         "@monorepo/typescript-config": "workspace:*",
