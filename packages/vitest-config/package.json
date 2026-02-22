@@ -6,9 +6,16 @@
     "type": "module",
     "license": "MIT",
     "exports": {
-        "./base": "./base.js",
-        "./react": "./react.js",
-        "./setup": "./setup.js"
+        "./base": {
+            "types": "./base.d.ts",
+            "default": "./base.js"
+        },
+        "./react": {
+            "types": "./react.d.ts",
+            "default": "./react.js"
+        },
+        "./setup": "./setup.js",
+        "./react-setup": "./react-setup.js"
     },
     "devDependencies": {
         "vitest": "catalog:",

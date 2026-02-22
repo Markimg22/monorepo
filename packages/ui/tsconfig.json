@@ -1,0 +1,12 @@
+{
+    "extends": "@monorepo/typescript-config/react-library",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "types": ["@testing-library/jest-dom"]
+    },
+    "include": ["src", ".storybook/**/*.ts", ".storybook/**/*.tsx", "vite.config.ts"],
+    "exclude": ["node_modules", "dist", "storybook-static"]
+}
