@@ -6,9 +6,18 @@
     "type": "module",
     "license": "MIT",
     "exports": {
-        "./base": "./base.js",
-        "./node": "./node.js",
-        "./react": "./react.js"
+        "./base": {
+            "types": "./base.d.ts",
+            "default": "./base.js"
+        },
+        "./node": {
+            "types": "./node.d.ts",
+            "default": "./node.js"
+        },
+        "./react": {
+            "types": "./react.d.ts",
+            "default": "./react.js"
+        }
     },
     "devDependencies": {
         "eslint": "catalog:",

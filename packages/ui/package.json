@@ -48,6 +48,7 @@
         "tailwindcss": "catalog:",
         "typescript": "catalog:",
         "vite": "catalog:",
-        "vitest": "catalog:"
+        "vitest": "catalog:",
+        "@vitest/coverage-v8": "catalog:"
     }
 }

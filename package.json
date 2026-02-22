@@ -12,7 +12,13 @@
     "engines": {
         "node": ">=22.22.0"
     },
-    "scripts": {},
+    "scripts": {
+        "dev": "nx run-many --target=dev",
+        "test": "nx run-many --target=test",
+        "test:coverage": "nx run-many --target=test:coverage",
+        "lint": "nx run-many --target=lint",
+        "typecheck": "nx run-many --target=typecheck"
+    },
     "devDependencies": {
         "@commitlint/cli": "catalog:",
         "@commitlint/config-conventional": "catalog:",
