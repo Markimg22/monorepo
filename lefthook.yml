@@ -1,0 +1,15 @@
+pre-commit:
+    parallel: true
+    commands:
+        prettier:
+            glob: '*.{js,mjs,ts,tsx,json,yaml,yml,md}'
+            run: pnpm exec prettier --write --ignore-unknown {staged_files}
+            stage_fixed: true
+        eslint:
+            run: pnpm exec nx affected --target=lint
+            stage_fixed: true
+
+commit-msg:
+    commands:
+        commitlint:
+            run: pnpm commitlint --edit {1}

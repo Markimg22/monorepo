@@ -1,3 +1,6 @@
-.nx/*
 node_modules
 .DS_Store
+dist
+.nx/*
+coverage
+.next

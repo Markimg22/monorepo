@@ -1,0 +1,10 @@
+{
+    "name": "@monorepo/typescript-config",
+    "version": "1.0.0",
+    "description": "Shared TypeScript configurations for the monorepo.",
+    "private": true,
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "catalog:"
+    }
+}
