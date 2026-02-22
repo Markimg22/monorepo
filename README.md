@@ -1,6 +1,6 @@
 # Monorepo
 
-A professional monorepo template with TypeScript, ESLint, Prettier, and git hooks pre-configured.
+A professional monorepo template with TypeScript, ESLint, Prettier, Vitest, and git hooks pre-configured.
 
 ## Requirements
 
@@ -27,14 +27,30 @@ packages/    # Shared libraries
 | ----------------------------- | -------------------------------- |
 | `@monorepo/typescript-config` | Shared TypeScript configurations |
 | `@monorepo/eslint-config`     | Shared ESLint configurations     |
-| `@monorepo/prettier-config`   | Shared Prettier configurations   |
+| `@monorepo/vitest-config`     | Shared Vitest configurations     |
+| `@monorepo/ui`                | Shared UI component library      |
+
+## Workspace Scripts
+
+Run from the monorepo root — NX orchestrates execution across all packages:
+
+```bash
+pnpm dev            # Start dev servers
+pnpm test           # Run tests
+pnpm test:coverage  # Run tests with coverage
+pnpm lint           # Lint all packages
+pnpm typecheck      # Type-check all packages
+pnpm format         # Format all files with Prettier
+```
 
 ## Tooling
 
 - **TypeScript** — strict mode with per-context configs (`node`, `nextjs`, `react-library`)
 - **ESLint** — flat config with `typescript-eslint` and `eslint-config-prettier`
-- **Prettier** — with `prettier-plugin-organize-imports` (and `prettier-plugin-tailwindcss` for React)
-- **Lefthook** — runs Prettier and ESLint on staged files before commit
+- **Prettier** — with `prettier-plugin-organize-imports` and `prettier-plugin-tailwindcss`
+- **Vitest** — shared base and React configs with jsdom and Testing Library
+- **NX** — package-based monorepo orchestration (`nx affected` for smart task running)
+- **Lefthook** — runs Prettier and `nx affected --target=lint` on staged files before commit
 - **Commitlint** — enforces [Conventional Commits](https://www.conventionalcommits.org/)
 
 ## Commit Convention
