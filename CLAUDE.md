@@ -28,11 +28,12 @@ Shared dependency versions are managed via `catalog:` in `pnpm-workspace.yaml`. 
 
 ## Shared Packages
 
-| Package                       | Purpose                      |
-| ----------------------------- | ---------------------------- |
-| `@monorepo/typescript-config` | Shared `tsconfig.json` bases |
-| `@monorepo/eslint-config`     | Shared ESLint flat configs   |
-| `@monorepo/prettier-config`   | Shared Prettier configs      |
+| Package                       | Purpose                           |
+| ----------------------------- | --------------------------------- |
+| `@monorepo/typescript-config` | Shared `tsconfig.json` bases      |
+| `@monorepo/eslint-config`     | Shared ESLint flat configs        |
+| `@monorepo/vitest-config`     | Shared Vitest configs             |
+| `@monorepo/ui`                | Shared React UI component library |
 
 When adding a new package, declare workspace deps with `"workspace:*"`:
 
@@ -41,9 +42,31 @@ When adding a new package, declare workspace deps with `"workspace:*"`:
     "devDependencies": {
         "@monorepo/typescript-config": "workspace:*",
         "@monorepo/eslint-config": "workspace:*",
-        "@monorepo/prettier-config": "workspace:*"
+        "@monorepo/vitest-config": "workspace:*"
     }
 }
+```
+
+## NX
+
+NX is configured in package-based mode (`nx.json`). It auto-discovers scripts from every `package.json` — no `project.json` files needed. `defaultBase` is set to `master`.
+
+Run a target across all packages from the root:
+
+```bash
+pnpm dev            # nx run-many --target=dev
+pnpm test           # nx run-many --target=test
+pnpm test:coverage  # nx run-many --target=test:coverage
+pnpm lint           # nx run-many --target=lint
+pnpm typecheck      # nx run-many --target=typecheck
+pnpm format         # prettier --write .
+```
+
+Run a target in a specific package:
+
+```bash
+pnpm exec nx run @monorepo/ui:lint
+pnpm exec nx run @monorepo/ui:test
 ```
 
 ## TypeScript
@@ -77,25 +100,69 @@ Available configs:
 - `node.js` — extends base
 - `react.js` — extends base + `eslint-plugin-react-hooks` + `@next/eslint-plugin-next`
 
+React packages that use `recommendedTypeChecked` must set `parserOptions.project` in their local `eslint.config.mjs`:
+
+```js
+import { react } from '@monorepo/eslint-config/react';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig(...react, {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+        parserOptions: {
+            project: './tsconfig.json',
+            tsconfigRootDir: import.meta.dirname
+        }
+    }
+});
+```
+
+Also ensure `.storybook/**/*.ts` files are included in `tsconfig.json` using explicit glob patterns (TypeScript does not traverse dot-prefixed directories by default):
+
+```json
+{ "include": ["src", ".storybook/**/*.ts", ".storybook/**/*.tsx", "vite.config.ts"] }
+```
+
 ## Prettier
 
-Each package references the appropriate config in its `package.json`:
+Prettier config lives at the root `prettier.config.mjs` and applies to all packages.
 
-```json
-{ "prettier": "@monorepo/prettier-config" }
+For React packages using Tailwind CSS v4, create a local `prettier.config.mjs` that extends the root config and adds `tailwindStylesheet`:
+
+```js
+import rootConfig from '../../prettier.config.mjs';
+
+export default {
+    ...rootConfig,
+    tailwindStylesheet: './src/styles/globals.css'
+};
 ```
 
-Or for React (includes `prettier-plugin-tailwindcss`):
+Then reference it in the package's `package.json`:
 
 ```json
-{ "prettier": "@monorepo/prettier-config/react" }
+{ "prettier": "./prettier.config.mjs" }
 ```
+
+## Vitest
+
+Each package imports the appropriate config in its `vitest.config.js`:
+
+```js
+import { base } from '@monorepo/vitest-config/base';
+// or
+import { react } from '@monorepo/vitest-config/react';
+
+export default react;
+```
+
+The `react` config includes `globals: true`, `jsdom` environment, and `@testing-library/jest-dom/vitest` setup. Packages using it must declare `@vitest/coverage-v8` as a direct `devDependency` to use `--coverage`.
 
 ## Git Hooks
 
 Hooks are managed by **lefthook** and run automatically on commit:
 
-- `pre-commit` — runs Prettier and ESLint with `--fix` on staged files
+- `pre-commit` — runs Prettier on staged files and `nx affected --target=lint` on affected packages
 - `commit-msg` — validates commit message with commitlint
 
 ## Commit Convention
