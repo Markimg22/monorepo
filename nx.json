@@ -1,5 +1,17 @@
 {
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "extends": "nx/presets/npm.json",
-    "defaultBase": "master"
+    "tui": {
+        "enabled": true
+    },
+    "defaultBase": "master",
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build"],
+            "cache": true
+        },
+        "dev": {
+            "dependsOn": ["^build"]
+        }
+    }
 }

@@ -6,15 +6,31 @@
     "type": "module",
     "license": "MIT",
     "exports": {
-        ".": "./src/index.ts",
-        "./globals.css": "./src/styles/globals.css"
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./styles.css": {
+            "style": "./dist/index.css",
+            "default": "./dist/index.css"
+        },
+        "./theme.css": {
+            "style": "./src/styles/theme.css",
+            "default": "./src/styles/theme.css"
+        }
     },
+    "files": [
+        "dist",
+        "src/styles/theme.css"
+    ],
     "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
         "lint": "eslint .",
         "typecheck": "tsc --noEmit",
-        "dev": "storybook dev -p 6006 --no-open",
+        "storybook": "storybook dev -p 6006 --no-open",
         "storybook:build": "storybook build"
     },
     "dependencies": {
@@ -48,6 +64,7 @@
         "storybook": "catalog:",
         "tailwindcss": "catalog:",
         "typescript": "catalog:",
+        "vite-plugin-dts": "catalog:",
         "vite": "catalog:",
         "vitest": "catalog:",
         "@vitest/coverage-v8": "catalog:"
