@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const stepContainerVariants = cva('flex items-start w-full', {
+export const stepContainerVariants = cva('flex w-full items-start', {
     variants: {
         labelPosition: {
             top: '',
@@ -17,10 +17,10 @@ export const stepContainerVariants = cva('flex items-start w-full', {
 export const stepVariants = cva('flex items-center gap-1', {
     variants: {
         labelPosition: {
-            top: 'flex-col-reverse max-w-20 w-20',
-            bottom: 'flex-col max-w-20 w-20',
-            left: 'flex-row-reverse max-w-32 w-auto shrink-0',
-            right: 'flex-row max-w-32 w-auto shrink-0'
+            top: 'w-20 max-w-20 flex-col-reverse',
+            bottom: 'w-20 max-w-20 flex-col',
+            left: 'w-auto max-w-32 shrink-0 flex-row-reverse',
+            right: 'w-auto max-w-32 shrink-0 flex-row'
         }
     },
     defaultVariants: {
@@ -29,7 +29,7 @@ export const stepVariants = cva('flex items-center gap-1', {
 });
 
 export const indicatorVariants = cva(
-    'size-8 md:size-10 transition-all duration-300 rounded-full flex items-center justify-center shrink-0',
+    'flex size-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 md:size-10',
     {
         variants: {
             status: {
@@ -45,7 +45,7 @@ export const indicatorVariants = cva(
 );
 
 export const labelVariants = cva(
-    'text-sm sm:text-base leading-tight text-foreground tracking-normal line-clamp-2 transition-colors duration-300 px-1',
+    'line-clamp-2 px-1 text-sm leading-tight tracking-normal text-foreground transition-colors duration-300 sm:text-base',
     {
         variants: {
             status: {
@@ -60,7 +60,7 @@ export const labelVariants = cva(
     }
 );
 
-export const connectorWrapperVariants = cva('flex-1 flex min-w-10', {
+export const connectorWrapperVariants = cva('flex min-w-10 flex-1', {
     variants: {
         labelPosition: {
             top: 'items-center self-center',
@@ -74,7 +74,7 @@ export const connectorWrapperVariants = cva('flex-1 flex min-w-10', {
     }
 });
 
-export const connectorVariants = cva('w-full h-0.5 transition-colors duration-300 mt-4 md:mt-5', {
+export const connectorVariants = cva('mt-4 h-0.5 w-full transition-colors duration-300 md:mt-5', {
     variants: {
         status: {
             completed: 'bg-primary',
