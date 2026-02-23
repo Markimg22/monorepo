@@ -17,18 +17,29 @@ pnpm lefthook install
 ## Structure
 
 ```
-apps/        # Standalone applications
-packages/    # Shared libraries
+apps/
+  web/       # Next.js web application
+packages/
+  ui/        # Shared React UI component library (Tailwind CSS v4 + Radix UI)
+  eslint-config/
+  typescript-config/
+  vitest-config/
 ```
+
+## Apps
+
+| App             | Description     | Stack                |
+| --------------- | --------------- | -------------------- |
+| `@monorepo/web` | Web application | Next.js, Tailwind v4 |
 
 ## Shared Packages
 
 | Package                       | Description                      |
 | ----------------------------- | -------------------------------- |
+| `@monorepo/ui`                | Shared UI component library      |
 | `@monorepo/typescript-config` | Shared TypeScript configurations |
 | `@monorepo/eslint-config`     | Shared ESLint configurations     |
 | `@monorepo/vitest-config`     | Shared Vitest configurations     |
-| `@monorepo/ui`                | Shared UI component library      |
 
 ## Workspace Scripts
 
@@ -47,6 +58,7 @@ pnpm format         # Format all files with Prettier
 
 - **TypeScript** — strict mode with per-context configs (`node`, `nextjs`, `react-library`)
 - **ESLint** — flat config with `typescript-eslint` and `eslint-config-prettier`
+- **Tailwind CSS v4** — shared theme via `@monorepo/ui/theme.css`, class sorting via `tailwindFunctions`
 - **Prettier** — with `prettier-plugin-organize-imports` and `prettier-plugin-tailwindcss`
 - **Vitest** — shared base and React configs with jsdom and Testing Library
 - **NX** — package-based monorepo orchestration (`nx affected` for smart task running)

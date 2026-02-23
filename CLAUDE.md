@@ -26,14 +26,20 @@ pnpm lefthook install     # Register git hooks (run after cloning)
 
 Shared dependency versions are managed via `catalog:` in `pnpm-workspace.yaml`. Always use `catalog:` instead of hardcoded versions for deps listed there.
 
+## Apps
+
+| App             | Purpose         | Stack                    |
+| --------------- | --------------- | ------------------------ |
+| `@monorepo/web` | Web application | Next.js, Tailwind CSS v4 |
+
 ## Shared Packages
 
 | Package                       | Purpose                           |
 | ----------------------------- | --------------------------------- |
+| `@monorepo/ui`                | Shared React UI component library |
 | `@monorepo/typescript-config` | Shared `tsconfig.json` bases      |
 | `@monorepo/eslint-config`     | Shared ESLint flat configs        |
 | `@monorepo/vitest-config`     | Shared Vitest configs             |
-| `@monorepo/ui`                | Shared React UI component library |
 
 When adding a new package, declare workspace deps with `"workspace:*"`:
 
@@ -122,6 +128,38 @@ Also ensure `.storybook/**/*.ts` files are included in `tsconfig.json` using exp
 ```json
 { "include": ["src", ".storybook/**/*.ts", ".storybook/**/*.tsx", "vite.config.ts"] }
 ```
+
+## Tailwind CSS v4
+
+### Theme sharing
+
+`@monorepo/ui` exports two CSS entry points via the `exports` field (with `"style"` condition for Turbopack/enhanced-resolve compatibility):
+
+- `@monorepo/ui/theme.css` — **source CSS** with CSS variables (`:root`, `.dark`), `@theme inline` (Tailwind token mapping), and `@custom-variant dark`. Distributed as source because `@theme inline` must be processed by each consumer's Tailwind build (it cannot be pre-compiled).
+- `@monorepo/ui/styles.css` — **compiled CSS** (`dist/index.css`) with all pre-built component utility classes.
+
+To consume the shared theme in a new app:
+
+```css
+@import 'tailwindcss';
+@import '@monorepo/ui/theme.css';
+@import '@monorepo/ui/styles.css';
+```
+
+### Export conditions
+
+CSS exports in `@monorepo/ui` must use the `"style"` condition. Turbopack (Next.js) uses `enhanced-resolve` which looks for this condition when resolving CSS `@import`:
+
+```json
+"./theme.css": {
+    "style": "./src/styles/theme.css",
+    "default": "./src/styles/theme.css"
+}
+```
+
+### Tailwind utility functions
+
+`tailwindFunctions` is configured in the root `prettier.config.mjs` so `prettier-plugin-tailwindcss` sorts classes inside `cva`, `cn`, `clsx`, and `twMerge`. The VS Code workspace settings also configure `tailwindCSS.classFunctions` for IntelliSense in these functions.
 
 ## Prettier
 
