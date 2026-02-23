@@ -7,7 +7,8 @@ const config = {
     trailingComma: 'none',
     endOfLine: 'auto',
     bracketSpacing: true,
-    plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-tailwindcss']
+    plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-tailwindcss'],
+    tailwindFunctions: ['cva', 'cn', 'clsx', 'twMerge']
 };
 
 export default config;

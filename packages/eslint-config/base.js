@@ -7,6 +7,9 @@ import tseslint from 'typescript-eslint';
 export const base = defineConfig(
     eslint.configs.recommended,
     {
+        ignores: ['node_modules', 'dist']
+    },
+    {
         files: ['**/*.ts', '**/*.tsx'],
         extends: [tseslint.configs.recommendedTypeChecked],
         rules: {
