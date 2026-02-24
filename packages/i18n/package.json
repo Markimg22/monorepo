@@ -1,0 +1,33 @@
+{
+    "name": "@monorepo/i18n",
+    "version": "1.0.0",
+    "description": "Centralized translations for the monorepo",
+    "private": true,
+    "type": "module",
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./locales": "./dist/locales"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc --project tsconfig.build.json",
+        "dev": "tsc --project tsconfig.build.json --watch",
+        "test": "vitest",
+        "lint": "eslint .",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@monorepo/eslint-config": "workspace:*",
+        "@monorepo/typescript-config": "workspace:*",
+        "@monorepo/vitest-config": "workspace:*",
+        "@types/node": "catalog:",
+        "typescript": "catalog:",
+        "vitest": "catalog:"
+    }
+}

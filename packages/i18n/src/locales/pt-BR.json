@@ -1,0 +1,6 @@
+{
+    "common": {
+        "greeting": "Olá, bem-vindo!",
+        "from-i18n": "do i18n"
+    }
+}

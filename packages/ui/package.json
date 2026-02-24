@@ -6,10 +6,6 @@
     "type": "module",
     "license": "MIT",
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js"
-        },
         "./styles.css": {
             "style": "./dist/index.css",
             "default": "./dist/index.css"
@@ -17,6 +13,14 @@
         "./theme.css": {
             "style": "./src/styles/theme.css",
             "default": "./src/styles/theme.css"
+        },
+        "./utils": {
+            "types": "./dist/lib/utils.d.ts",
+            "import": "./dist/lib/utils.js"
+        },
+        "./*": {
+            "types": "./dist/components/*/index.d.ts",
+            "import": "./dist/components/*/index.js"
         }
     },
     "files": [
