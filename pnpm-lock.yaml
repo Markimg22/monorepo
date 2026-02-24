@@ -173,9 +173,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@monorepo/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@monorepo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -255,27 +252,6 @@ importers:
       typescript-eslint:
         specifier: 'catalog:'
         version: 8.56.0(eslint@10.0.1(jiti@2.6.1))(typescript@5.9.3)
-
-  packages/i18n:
-    devDependencies:
-      '@monorepo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@monorepo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@monorepo/vitest-config':
-        specifier: workspace:*
-        version: link:../vitest-config
-      '@types/node':
-        specifier: 'catalog:'
-        version: 25.3.0
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
-      vitest:
-        specifier: 'catalog:'
-        version: 4.0.18(@types/node@25.3.0)(jiti@2.6.1)(jsdom@28.1.0)(lightningcss@1.31.1)(yaml@2.8.2)
 
   packages/typescript-config:
     devDependencies:
