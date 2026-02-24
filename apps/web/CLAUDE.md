@@ -4,7 +4,7 @@ Guidance for working with the Next.js web application.
 
 ## Overview
 
-**Next.js web application** serving as the main frontend for the monorepo. Uses **TypeScript**, **Tailwind CSS v4**, **React**, and shared packages (`@monorepo/ui`, `@monorepo/i18n`).
+**Next.js web application** serving as the main frontend for the monorepo. Uses **TypeScript**, **Tailwind CSS v4**, **React**, and shared packages (`@monorepo/ui`).
 
 ## Structure
 
@@ -16,8 +16,6 @@ apps/web/
 │   │   ├── page.tsx            # Home page
 │   │   └── ...other routes
 │   ├── components/             # Local UI components (not in @monorepo/ui)
-│   ├── hooks/                  # Local React hooks
-│   │   └── useTranslation.ts   # i18n integration hook
 │   ├── styles/
 │   │   └── globals.css         # Global styles (imports Tailwind)
 │   └── middleware.ts           # Next.js middleware (optional)
@@ -50,29 +48,6 @@ export function HomePage() {
 }
 ```
 
-### `@monorepo/i18n`
-
-Type-safe translations with browser detection and persistence:
-
-```tsx
-import { useTranslation } from '@monorepo/web/hooks';
-
-export function Header() {
-    const { t, language, setLanguage, supportedLanguages } = useTranslation();
-
-    return (
-        <header>
-            <h1>{t('common.greeting')}</h1>
-            <select value={language} onChange={(e) => setLanguage(e.target.value as SupportedLanguage)}>
-                {supportedLanguages.map((lang) => (
-                    <option key={lang} value={lang}>{lang}</option>
-                ))}
-            </select>
-        </header>
-    );
-}
-```
-
 ## Styling with Tailwind CSS v4
 
 ### Global Styles
@@ -98,30 +73,6 @@ Prettier automatically sorts Tailwind classes:
 ```
 
 This is configured in the local `prettier.config.mjs`.
-
-## Internationalization
-
-`useTranslation` hook in `src/hooks/useTranslation.ts`:
-
-- **Auto-detection**: Detects browser language on first load
-- **Persistence**: Saves language selection to `localStorage` (`app:language` key)
-- **Type-safe**: Full TypeScript support for translation keys
-- **Synced**: Integrates with core `@monorepo/i18n` package
-
-Usage:
-
-```tsx
-import { useTranslation } from '@monorepo/web/hooks';
-
-export function MyComponent() {
-    const { t, language, setLanguage } = useTranslation();
-
-    // t() has type safety — only valid translation keys allowed
-    const greeting = t('common.greeting');
-
-    return <p>{greeting}</p>;
-}
-```
 
 ## Development
 
@@ -157,15 +108,11 @@ Use Next.js App Router:
 // src/app/page.tsx
 'use client';
 
-import { useTranslation } from '@monorepo/web/hooks';
 import { Button } from '@monorepo/ui/button';
 
 export default function HomePage() {
-    const { t } = useTranslation();
-
     return (
         <main>
-            <h1>{t('common.greeting')}</h1>
             <Button>Get started</Button>
         </main>
     );
@@ -178,16 +125,10 @@ Local components specific to the web app:
 
 ```tsx
 // src/components/header.tsx
-'use client';
-
-import { useTranslation } from '@monorepo/web/hooks';
-
 export function Header() {
-    const { t, language, setLanguage, supportedLanguages } = useTranslation();
-
     return (
         <header>
-            <h1>{t('common.greeting')}</h1>
+            <h1>Header</h1>
             {/* Language switcher */}
         </header>
     );
@@ -320,7 +261,6 @@ pnpm lint  # Only lints affected packages
 ## Related Packages
 
 - **`@monorepo/ui`** — Shared UI components (Button, Card, etc.)
-- **`@monorepo/i18n`** — Translations with type safety
 - **`@monorepo/typescript-config`** — TypeScript configuration (nextjs.json)
 - **`@monorepo/eslint-config`** — ESLint configuration (react)
 - **`@monorepo/vitest-config`** — Test configuration (if testing)

@@ -47,7 +47,6 @@ export default defineConfig({
 
 **Used by:**
 
-- `packages/i18n`
 - `packages/eslint-config`
 - `packages/vitest-config`
 - `packages/typescript-config`
@@ -90,8 +89,6 @@ export default defineConfig({
 
 ### Node Package
 
-`packages/i18n/vitest.config.js`:
-
 ```js
 import { base } from '@monorepo/vitest-config/base';
 
@@ -125,55 +122,6 @@ export default react;
 pnpm test                           # All packages
 pnpm test:coverage                  # All with coverage
 pnpm exec nx run @monorepo/ui:test  # Specific package
-```
-
-## Writing Tests
-
-### Node.js Tests
-
-`src/index.spec.ts`:
-
-```ts
-import { describe, it, expect, beforeEach } from 'vitest';
-import { t, setLanguage } from './index';
-
-describe('i18n', () => {
-    beforeEach(() => {
-        setLanguage('pt-BR');
-    });
-
-    it('returns translation for valid key', () => {
-        const result = t('common.greeting');
-        expect(result).toBe('Olá, bem-vindo!');
-    });
-});
-```
-
-### React Component Tests
-
-`src/components/button/button.spec.tsx`:
-
-```tsx
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect } from 'vitest';
-import { Button } from './button';
-
-describe('Button', () => {
-    it('renders with text', () => {
-        render(<Button>Click me</Button>);
-        expect(screen.getByText('Click me')).toBeInTheDocument();
-    });
-
-    it('handles click events', async () => {
-        const user = userEvent.setup();
-        const handleClick = vi.fn();
-        render(<Button onClick={handleClick}>Click</Button>);
-
-        await user.click(screen.getByText('Click'));
-        expect(handleClick).toHaveBeenCalled();
-    });
-});
 ```
 
 ## Coverage

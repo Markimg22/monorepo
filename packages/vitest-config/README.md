@@ -63,7 +63,6 @@ Node.js testing environment:
 
 **Used by:**
 
-- `packages/i18n`
 - `packages/eslint-config`
 - `packages/vitest-config`
 - `packages/typescript-config`
@@ -77,55 +76,6 @@ React component testing environment:
 - **Globals**: Enabled
 - **Testing Library**: Includes `@testing-library/jest-dom` setup
 - **Coverage**: V8 provider
-
-**Used by:**
-
-- `packages/ui`
-
-## Writing Tests
-
-### Node.js Example
-
-```ts
-import { describe, it, expect } from 'vitest';
-import { t, setLanguage } from './index';
-
-describe('translations', () => {
-    it('returns correct translation', () => {
-        expect(t('common.greeting')).toBe('Olá, bem-vindo!');
-    });
-
-    it('changes language', () => {
-        setLanguage('en');
-        expect(t('common.greeting')).toBe('Hello, welcome!');
-    });
-});
-```
-
-### React Component Example
-
-```tsx
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
-import { Button } from './button';
-
-describe('Button', () => {
-    it('renders with text', () => {
-        render(<Button>Click me</Button>);
-        expect(screen.getByText('Click me')).toBeInTheDocument();
-    });
-
-    it('calls onClick when clicked', async () => {
-        const user = userEvent.setup();
-        const onClick = vi.fn();
-        render(<Button onClick={onClick}>Click</Button>);
-
-        await user.click(screen.getByText('Click'));
-        expect(onClick).toHaveBeenCalledOnce();
-    });
-});
-```
 
 ## Running Tests
 

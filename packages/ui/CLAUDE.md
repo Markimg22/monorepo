@@ -257,12 +257,6 @@ dist/
 
 **Formats:** ES modules only (`format: 'es'`), no CommonJS.
 
-**sideEffects:** Marked in `package.json` for CSS imports:
-
-```json
-{ "sideEffects": ["**/*.css"] }
-```
-
 ## TypeScript Config
 
 Extends `@monorepo/typescript-config/react-library`:

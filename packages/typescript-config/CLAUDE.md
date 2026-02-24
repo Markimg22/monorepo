@@ -65,13 +65,6 @@ For **Node.js packages and CLI tools**:
 }
 ```
 
-**Used by:**
-
-- `packages/i18n`
-- `packages/eslint-config`
-- `packages/vitest-config`
-- `packages/typescript-config`
-
 ### `nextjs.json`
 
 For **Next.js applications**:
@@ -95,10 +88,6 @@ For **Next.js applications**:
 }
 ```
 
-**Used by:**
-
-- `apps/web`
-
 ### `react-library.json`
 
 For **React component libraries**:
@@ -121,10 +110,6 @@ For **React component libraries**:
     "include": ["src", ".storybook/**/*.ts", ".storybook/**/*.tsx", "vite.config.ts"]
 }
 ```
-
-**Used by:**
-
-- `packages/ui`
 
 ## Usage in Packages
 

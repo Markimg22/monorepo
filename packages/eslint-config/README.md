@@ -133,7 +133,6 @@ export default defineConfig(...react, {
 
 ## Usage Across Monorepo
 
-- **`packages/i18n`** → `node`
 - **`packages/ui`** → `react`
 - **`packages/eslint-config`** → `node`
 - **`packages/vitest-config`** → `node`

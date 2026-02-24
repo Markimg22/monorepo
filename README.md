@@ -21,7 +21,6 @@ apps/
   web/       # Next.js web application
 packages/
   ui/        # Shared React UI component library (Tailwind CSS v4 + Radix UI)
-  i18n/      # Centralized internationalization package
   eslint-config/
   typescript-config/
   vitest-config/
@@ -35,13 +34,12 @@ packages/
 
 ## Shared Packages
 
-| Package                       | Description                             |
-| ----------------------------- | --------------------------------------- |
-| `@monorepo/ui`                | Shared UI component library             |
-| `@monorepo/i18n`              | Centralized internationalization (i18n) |
-| `@monorepo/typescript-config` | Shared TypeScript configurations        |
-| `@monorepo/eslint-config`     | Shared ESLint configurations            |
-| `@monorepo/vitest-config`     | Shared Vitest configurations            |
+| Package                       | Description                      |
+| ----------------------------- | -------------------------------- |
+| `@monorepo/ui`                | Shared UI component library      |
+| `@monorepo/typescript-config` | Shared TypeScript configurations |
+| `@monorepo/eslint-config`     | Shared ESLint configurations     |
+| `@monorepo/vitest-config`     | Shared Vitest configurations     |
 
 ## Workspace Scripts
 

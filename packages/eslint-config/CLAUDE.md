@@ -56,13 +56,6 @@ export default defineConfig(...node, {
 });
 ```
 
-**Used by:**
-
-- `packages/i18n`
-- `packages/eslint-config`
-- `packages/vitest-config`
-- `packages/typescript-config`
-
 ### `react.js`
 
 For **React packages and Next.js apps**:
@@ -84,11 +77,6 @@ export default defineConfig(...react, {
     }
 });
 ```
-
-**Used by:**
-
-- `packages/ui`
-- `apps/web`
 
 ## Usage
 

@@ -35,12 +35,6 @@ For backend code, CLI tools, and configuration packages:
 }
 ```
 
-**Used by:**
-
-- `@monorepo/i18n`
-- `@monorepo/eslint-config`
-- `@monorepo/vitest-config`
-
 ### Next.js Applications
 
 For Next.js apps with `jsx: preserve`:
@@ -56,10 +50,6 @@ For Next.js apps with `jsx: preserve`:
     }
 }
 ```
-
-**Used by:**
-
-- `@monorepo/web`
 
 ### React Component Libraries
 
@@ -152,7 +142,6 @@ All packages extend one of these configurations:
 packages/
 ├── typescript-config/        ← You are here
 ├── ui/                        → react-library.json
-├── i18n/                      → node.json
 ├── eslint-config/             → node.json
 └── vitest-config/             → node.json
 

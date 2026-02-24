@@ -52,36 +52,6 @@ export function Page() {
 }
 ```
 
-### Type-Safe Translations
-
-Integrated `useTranslation()` hook:
-
-```tsx
-import { useTranslation } from '@monorepo/web/hooks';
-
-export function Header() {
-    const { t, language, setLanguage, supportedLanguages } = useTranslation();
-
-    return (
-        <header>
-            <h1>{t('common.greeting')}</h1>
-            <select value={language} onChange={(e) => setLanguage(e.target.value as SupportedLanguage)}>
-                {supportedLanguages.map((lang) => (
-                    <option key={lang} value={lang}>{lang}</option>
-                ))}
-            </select>
-        </header>
-    );
-}
-```
-
-**Features:**
-
-- Auto-detects browser language on first visit
-- Saves language preference to `localStorage`
-- Full TypeScript type safety for translation keys
-- Supports: `pt-BR` (default), `en`
-
 ### Tailwind CSS v4
 
 Global styles with shared theme:
@@ -112,8 +82,6 @@ apps/web/
 │   │   ├── layout.tsx
 │   │   └── page.tsx
 │   ├── components/             # Local components
-│   ├── hooks/
-│   │   └── useTranslation.ts   # i18n integration
 │   └── styles/
 │       └── globals.css         # Tailwind + theme imports
 ├── public/                     # Static assets
@@ -150,7 +118,6 @@ Variables prefixed with `NEXT_PUBLIC_` are available in browser code.
 - **next** — Framework
 - **react** — UI library
 - **@monorepo/ui** — Shared components
-- **@monorepo/i18n** — Translations
 
 ### Dev Dependencies
 
@@ -167,15 +134,12 @@ Variables prefixed with `NEXT_PUBLIC_` are available in browser code.
 ```tsx
 'use client';
 
-import { useTranslation } from '@monorepo/web/hooks';
 import { Button } from '@monorepo/ui/button';
 
 export default function MyPage() {
-    const { t } = useTranslation();
 
     return (
         <main>
-            <h1>{t('common.greeting')}</h1>
             <Button>Get started</Button>
         </main>
     );
@@ -280,6 +244,5 @@ For detailed development guidance, see [CLAUDE.md](./CLAUDE.md).
 ## Related Packages
 
 - **`@monorepo/ui`** — UI components and utilities
-- **`@monorepo/i18n`** — Type-safe translations
 - **`@monorepo/typescript-config`** — TypeScript settings
 - **`@monorepo/eslint-config`** — Linting rules
