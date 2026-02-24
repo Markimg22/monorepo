@@ -13,7 +13,6 @@
         "lint": "eslint ."
     },
     "dependencies": {
-        "@monorepo/i18n": "workspace:*",
         "@monorepo/ui": "workspace:*",
         "lucide-react": "catalog:",
         "next": "catalog:",
