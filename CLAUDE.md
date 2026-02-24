@@ -34,12 +34,13 @@ Shared dependency versions are managed via `catalog:` in `pnpm-workspace.yaml`. 
 
 ## Shared Packages
 
-| Package                       | Purpose                           |
-| ----------------------------- | --------------------------------- |
-| `@monorepo/ui`                | Shared React UI component library |
-| `@monorepo/typescript-config` | Shared `tsconfig.json` bases      |
-| `@monorepo/eslint-config`     | Shared ESLint flat configs        |
-| `@monorepo/vitest-config`     | Shared Vitest configs             |
+| Package                       | Purpose                                         |
+| ----------------------------- | ----------------------------------------------- |
+| `@monorepo/ui`                | Shared React UI component library               |
+| `@monorepo/i18n`              | Centralized internationalization (i18n) package |
+| `@monorepo/typescript-config` | Shared `tsconfig.json` bases                    |
+| `@monorepo/eslint-config`     | Shared ESLint flat configs                      |
+| `@monorepo/vitest-config`     | Shared Vitest configs                           |
 
 When adding a new package, declare workspace deps with `"workspace:*"`:
 

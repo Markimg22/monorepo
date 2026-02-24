@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+
 import { getLanguage, getSupportedLanguages, getTranslations, setLanguage, t, type SupportedLanguage } from './index';
 
 describe('@monorepo/i18n', () => {

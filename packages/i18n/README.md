@@ -1,6 +1,6 @@
 # @monorepo/i18n
 
-Centralized translations package for the monorepo. Used across all apps (web, api, etc.).
+Centralized internationalization (i18n) package with **type-safe translations** for all apps.
 
 ## Installation
 
@@ -8,14 +8,14 @@ Centralized translations package for the monorepo. Used across all apps (web, ap
 pnpm add @monorepo/i18n
 ```
 
-## Usage
+## Quick Start
 
-### Basic Translation
+### Basic Usage
 
 ```ts
 import { t, setLanguage } from '@monorepo/i18n';
 
-// Get current language translation (default: pt-BR)
+// Get translation (default language: pt-BR)
 console.log(t('common.greeting')); // "Olá, bem-vindo!"
 
 // Change language
@@ -26,17 +26,57 @@ console.log(t('common.greeting')); // "Hello, welcome!"
 console.log(t('common.greeting', 'pt-BR')); // "Olá, bem-vindo!"
 ```
 
-### Get Current Language
+### Type-Safe Keys
+
+Translation keys are **fully type-safe**:
 
 ```ts
-import { getLanguage, setLanguage } from '@monorepo/i18n';
+import { t, type TranslationKey } from '@monorepo/i18n';
 
-console.log(getLanguage()); // "pt-BR"
-setLanguage('en');
-console.log(getLanguage()); // "en"
+const greeting: string = t('common.greeting'); // ✅ Valid key
+const invalid: string = t('invalid.key'); // ❌ Type error
 ```
 
-### Get Supported Languages
+TypeScript enforces that only valid, existing keys can be used.
+
+## API
+
+### `t(key, language?)`
+
+Retrieve a translation by dot-separated key path.
+
+```ts
+import { t } from '@monorepo/i18n';
+
+t('common.greeting'); // Current language (pt-BR by default)
+t('common.greeting', 'en'); // Specific language
+```
+
+**Returns:** Translation string, or key as fallback if missing (with warning)
+
+### `setLanguage(language)`
+
+Change the current language.
+
+```ts
+import { setLanguage } from '@monorepo/i18n';
+
+setLanguage('en');
+```
+
+### `getLanguage()`
+
+Get the current language.
+
+```ts
+import { getLanguage } from '@monorepo/i18n';
+
+console.log(getLanguage()); // "pt-BR" or "en"
+```
+
+### `getSupportedLanguages()`
+
+Get list of all supported languages.
 
 ```ts
 import { getSupportedLanguages } from '@monorepo/i18n';
@@ -44,28 +84,111 @@ import { getSupportedLanguages } from '@monorepo/i18n';
 console.log(getSupportedLanguages()); // ["pt-BR", "en"]
 ```
 
-## Adding New Translations
+### `getTranslations(language?)`
 
-1. Edit the locale files in `src/locales/`:
-    - `src/locales/pt-BR.json`
-    - `src/locales/en.json`
+Get all translations for a language.
 
-2. Update the `Translations` type in `src/types.ts` to match your new structure
+```ts
+import { getTranslations } from '@monorepo/i18n';
 
-3. Run `pnpm -F @monorepo/i18n build` to compile
+const messages = getTranslations('en');
+```
 
 ## Supported Languages
 
-- `pt-BR` - Portuguese (Brazil) - Default
-- `en` - English
+- **`pt-BR`** — Portuguese (Brazil) — Default
+- **`en`** — English
 
-## TypeScript Support
+## Adding New Translations
 
-All translations are type-safe. The `Translations` interface ensures you're using valid keys.
+1. Edit translation files in `src/locales/`:
+    - `src/locales/pt-BR.json`
+    - `src/locales/en.json`
+
+2. Add your keys and values:
+
+```json
+{
+    "common": {
+        "greeting": "Olá, bem-vindo!",
+        "from-i18n": "Do pacote i18n"
+    },
+    "auth": {
+        "login": "Entrar",
+        "logout": "Sair"
+    }
+}
+```
+
+3. **Type-safe keys are auto-generated** — no manual type updates needed!
+
+4. Build and deploy:
+
+```bash
+pnpm -F @monorepo/i18n build
+```
+
+## React Integration
+
+Use the `useTranslation()` hook in React apps (from `@monorepo/web`):
 
 ```ts
-import type { Translations } from '@monorepo/i18n';
+import { useTranslation } from '@monorepo/web/hooks';
 
-const greeting: string = t('common.greeting'); // ✅ Valid
-const invalid: string = t('invalid.key'); // ⚠️ Runtime warning
+export function Header() {
+    const { t, language, setLanguage, supportedLanguages } = useTranslation();
+
+    return (
+        <header>
+            <h1>{t('common.greeting')}</h1>
+            <select value={language} onChange={(e) => setLanguage(e.target.value as SupportedLanguage)}>
+                {supportedLanguages.map((lang) => (
+                    <option key={lang} value={lang}>{lang}</option>
+                ))}
+            </select>
+        </header>
+    );
+}
+```
+
+**Hook Features:**
+
+- Auto-detects browser language on first visit
+- Persists language selection to localStorage
+- Type-safe translation function
+- Syncs with core i18n package
+
+## Testing
+
+Function overloads allow flexible testing:
+
+```ts
+// Runtime-only (for tests, loose typing)
+import { t, setLanguage, type SupportedLanguage } from '@monorepo/i18n';
+
+setLanguage('es' as SupportedLanguage); // Test unsupported language
+t('missing.key'); // Returns key, logs warning
+```
+
+## Export Types
+
+Import types for use in your app:
+
+```ts
+import type { SupportedLanguage, TranslationKey, Translations } from '@monorepo/i18n';
+```
+
+- `SupportedLanguage` — Union of supported language codes
+- `TranslationKey` — Type-safe translation key paths
+- `Translations` — Full translation object structure
+
+## For Developers
+
+For detailed development guidance, see [CLAUDE.md](./CLAUDE.md).
+
+```bash
+pnpm -F @monorepo/i18n build      # Build
+pnpm -F @monorepo/i18n lint       # Lint
+pnpm -F @monorepo/i18n typecheck  # Type check
+pnpm -F @monorepo/i18n test       # Test
 ```
