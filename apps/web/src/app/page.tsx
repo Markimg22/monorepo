@@ -1,4 +1,4 @@
-import { Button } from '@monorepo/ui';
+import { Button } from '@monorepo/ui/button';
 
 export default function Home() {
     return (
